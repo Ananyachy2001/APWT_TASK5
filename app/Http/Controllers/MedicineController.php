@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Medicine;
+use App\Models\Medical;
 
 class MedicineController extends Controller
 {
@@ -33,7 +33,9 @@ class MedicineController extends Controller
             ]
         );
 
-        $var = new Medicine();
+        $var = new Medical();
+
+        $var->id= $request->id;
         $var->med_name= $request->med_name;
         $var->med_details = $request->med_details;
         $var->men_date = $request->men_date;
@@ -47,16 +49,17 @@ class MedicineController extends Controller
     }
     public function list(){
 
-        $meds = Medicine::all();
+        $meds = Medical::all();
         return view('pages.medical.list')->with('meds',$meds);
     }
     
 
     public function APIList(){
-        return Medicine::all();
+        return Medical::all();
     }
-    public function APIPost(Request $req){
-        $var = new Medicine();
+    public function APIPost(Request $request){
+        $var = new Medical();
+        $var->id= $request->id;
         $var->med_name= $request->med_name;
         $var->med_details = $request->med_details;
         $var->men_date = $request->men_date;
@@ -65,6 +68,6 @@ class MedicineController extends Controller
         $var->quantity=$request->quantity;
         $var->save();
 
-        return $req;
+        return $request;
     }
 }

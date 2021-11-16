@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Medicine;
+use App\Models\Medical;
 class PagesController extends Controller
 {
     public function home(){
